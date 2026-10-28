@@ -1,1 +1,0 @@
-console.log("This is the JavaScript work for AeroMind")
