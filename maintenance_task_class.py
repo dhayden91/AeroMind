@@ -37,3 +37,13 @@ class MaintenanceTask:
 
     def close_task(self) -> None:
         self.status = "CLOSED"
+
+
+
+    def to_dict(self) -> dict:
+        return {
+    "aircraft": self.aircraft,
+    "discrepancy": self.discrepancy,
+    "priority": self.priority,
+    "status": self.status
+}

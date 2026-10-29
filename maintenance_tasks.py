@@ -1,41 +1,46 @@
 import maintenance_utils
 import json
+from maintenance_task_class import MaintenanceTask
 
 maintenance_tasks = [
-    {
-        'aircraft': 'N101G', 
-        'discrepancy': 'left landing gear will not engage',
-         'priority': 'HIGH',
-         'status': 'OPEN'
-    },
-    {
-        'aircraft': 'N202G',
-        'discrepancy': 'coffee maker inop',
-        'priority': 'LOW',
-        'status': 'OPEN'
-    },
-    {
-        'aircraft': 'N303G',
-        'discrepancy': 'de-ice inop',
-        'priority': 'HIGH',
-        'status': 'CLOSED'
-    },
-    {
-        'aircraft': 'N404G',
-        'discrepancy': 'right anti-collision light dim',
-        'priority': 'MEDIUM',
-        'status': 'OPEN'
-    },
-    {
-        'aircraft': 'N505G',
-        'discrepancy': 'co-pilot seat smells funny',
-        'priority': 'LOW',
-        'status': 'CLOSED'
-    }
+    MaintenanceTask(
+        "N101G",
+        "left landing gear will not engage",
+        "HIGH",
+        "OPEN"
+    ),
+    MaintenanceTask(
+        "N202G",
+        "coffee maker inop",
+        "LOW",
+        "OPEN"
+    ),
+    MaintenanceTask(
+        "N303G",
+        "de-ice inop",
+        "HIGH",
+        "CLOSED"
+    ),
+    MaintenanceTask(
+        "N404G",
+        "right anti-collision light dim",
+        "MEDIUM",
+        "OPEN"
+    ),
+    MaintenanceTask(
+        "N505G",
+        "co-pilot seat smells funny",
+        "LOW",
+        "CLOSED"
+    )
 ]
 
-with open('maintenance_tasks.json', 'w') as maintenance_tasks_json:
-    json.dump(maintenance_tasks, maintenance_tasks_json, indent=4)
+with open("maintenance_tasks.json", "w") as maintenance_tasks_json:
+    json.dump(
+        [task.to_dict() for task in maintenance_tasks],
+        maintenance_tasks_json,
+        indent=4
+    )
 
 def format_task(aircraft_id, discrepancy, priority, status):
     clean_aircraft = aircraft_id.strip().upper()
@@ -53,29 +58,31 @@ print('ALL MAINTENANCE TASKS\n')
 
 for task in maintenance_tasks:
     print(format_task(
-        task['aircraft'], 
-        task['discrepancy'], 
-        task['priority'], 
-        task['status']))
+        task.aircraft,
+        task.discrepancy,
+        task.priority,
+        task.status
+    ))
 
 print('HIGH PRIORITY TASKS\n')
 
 for task in maintenance_tasks:
-    if task['priority'] == 'HIGH':
+    if task.priority == 'HIGH':
        print(format_task(
-               task['aircraft'], 
-               task['discrepancy'], 
-               task['priority'], 
-               task['status']))
+           task.aircraft,
+           task.discrepancy,
+           task.priority,
+           task.status
+        ))
 
 
 open_count = 0
 closed_count = 0
 
 for task in maintenance_tasks:
-    if task['status'] == 'OPEN':
+    if task.status == 'OPEN':
         open_count += 1
-    elif task['status'] == 'CLOSED':
+    elif task.status == 'CLOSED':
         closed_count += 1
 
 print('TASK STATUS TOTALS')
