@@ -60,10 +60,12 @@ try:
             )
 
         except KeyError as error:
-            print(f"Missing required field: {error}")
+            aircraft = task.get("aircraft") or "UNKNOWN"
+            print(f"Maintenance task for {aircraft} is missing required field: {error}")
         except ValueError as error:
-            print(f"Invalid maintenance task: {error}")
-            
+            aircraft = task.get("aircraft") or "UNKNOWN"
+            print(f"Invalid entry for {aircraft}: {error}")
+
 except FileNotFoundError:
     print("Maintenance data file not found.")
     maintenance_tasks = []

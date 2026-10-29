@@ -1,0 +1,32 @@
+[
+    {
+        "aircraft": "N101G",
+        "discrepancy": "left landing gear will not engage",
+        "priority": "HIGH",
+        "status": "OPEN"
+    },
+    {
+        "aircraft": "N202G",
+        "discrepancy": "coffee maker inop",
+        "priority": "LOW",
+        "status": "OPEN"
+    },
+    {
+        "aircraft": "N303G",
+        "discrepancy": "de-ice inop",
+        "priority": "HIGH",
+        "status": "CLOSED"
+    },
+    {
+        "aircraft": "N404G",
+        "discrepancy": "right anti-collision light dim",
+        "priority": "MEDIUM",
+        "status": "OPEN"
+    },
+    {
+        "aircraft": "N505G",
+        "discrepancy": "co-pilot seat smells funny",
+        "priority": "LOW",
+        "status": "CLOSED"
+    }
+]
