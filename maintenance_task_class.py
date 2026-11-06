@@ -1,5 +1,5 @@
 class MaintenanceTask:
-    def __init__(self, aircraft: str, discrepancy: str, priority: str, status: str):
+    def __init__(self, aircraft: str, discrepancy: str, priority: str, status: str = "OPEN"):
         if aircraft == "":
             raise ValueError("Invalid aircraft")
 

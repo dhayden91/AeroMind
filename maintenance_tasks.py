@@ -2,6 +2,7 @@ import maintenance_utils
 import json
 from maintenance_task_class import MaintenanceTask
 
+
 # maintenance_tasks = [
 #     MaintenanceTask(
 #         "N101G",
@@ -52,10 +53,10 @@ try:
         try:
             maintenance_tasks.append(
                 MaintenanceTask(
-                    task["aircraft"],
-                    task["discrepancy"],
-                    task["priority"],
-                    task["status"]
+                    aircraft=task["aircraft"],
+                    discrepancy=task["discrepancy"],
+                    priority=task["priority"],
+                    status=task["status"]
                 )
             )
 
@@ -75,11 +76,11 @@ except json.JSONDecodeError:
 
 
 
-def format_task(aircraft_id, discrepancy, priority, status):
-    clean_aircraft = aircraft_id.strip().upper()
-    clean_discrepancy = discrepancy.strip().lower()
-    clean_priority = priority.strip().upper()
-    clean_status = status.strip().upper()
+def format_task(task):
+    clean_aircraft = task.aircraft.strip().upper()
+    clean_discrepancy = task.discrepancy.strip().lower()
+    clean_priority = task.priority.strip().upper()
+    clean_status = task.status.strip().upper()
     decision = maintenance_utils.check_priority(clean_priority)
     return 'Aircraft: {aircraft} \nDiscrepancy: {discrepancy} \nPriority: {priority} \nStatus: {status} \nDecision: {decision} \n'.format(aircraft=clean_aircraft, discrepancy=clean_discrepancy, priority=clean_priority, status=clean_status, decision=decision)
 
@@ -96,12 +97,7 @@ print('ALL MAINTENANCE TASKS\n')
 
 
 for task in maintenance_tasks:
-    print(format_task(
-        task.aircraft,
-        task.discrepancy,
-        task.priority,
-        task.status
-    ))
+    print(format_task(task))
 
 
 
@@ -111,12 +107,7 @@ print('HIGH PRIORITY TASKS\n')
 
 for task in maintenance_tasks:
     if task.priority == 'HIGH':
-       print(format_task(
-           task.aircraft,
-           task.discrepancy,
-           task.priority,
-           task.status
-        ))
+       print(format_task(task))
 
 
 
