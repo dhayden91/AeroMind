@@ -122,9 +122,13 @@ def task_counter(maintenance_tasks):
             open_count += 1
         elif task.status == 'CLOSED':
             closed_count += 1
-    return 'OPEN: ' + str(open_count) + '\nCLOSED: ' + str(closed_count)
+    return {"OPEN": open_count, "CLOSED": closed_count}
 
 
+
+counts = task_counter(maintenance_tasks)
+open_total = counts["OPEN"]
+closed_total = counts["CLOSED"]
 
 print('TASK STATUS TOTALS')
-print(task_counter(maintenance_tasks))
+print('OPEN: ' + str(open_total) + '\nCLOSED: ' + str(closed_total))
